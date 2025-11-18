@@ -8,7 +8,6 @@ RIGHT = 0
 
 
 class Snake:
-
     def __init__(self):
         self.segments = []
         self.create_snake()
@@ -17,11 +16,7 @@ class Snake:
     # TODO: 1. create snake body (3 squares)
     def create_snake(self):
         for position in S_POSITIONS:
-            new_s = Turtle("square")
-            new_s.color("white")
-            new_s.penup()
-            new_s.goto(position)
-            self.segments.append(new_s)
+            self.add_segment(position)
 
     # TODO: 2. move snake and changing directions
     def move(self):
@@ -47,3 +42,14 @@ class Snake:
     def right(self):
         if self.head.heading() != LEFT:
             self.head.setheading(RIGHT)
+
+    # TODO: 7. Detect collision with tail
+    def add_segment(self, position):
+        new_s = Turtle("square")
+        new_s.color("white")
+        new_s.penup()
+        new_s.goto(position)
+        self.segments.append(new_s)
+
+    def extend(self):
+        self.add_segment(self.segments[-1].position())  # add in the end of the list
